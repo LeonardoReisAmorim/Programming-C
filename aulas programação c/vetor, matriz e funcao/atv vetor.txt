@@ -1,0 +1,15 @@
+1 - Uma escola com 200 alunos está realizando um competição que premiará o aluno que obtiver 
+a maior média final em todas as disciplinas. Elabore um algoritmo que guarde a média final de todos os alunos e mostre a média do aluno campeão.
+
+2 - Implementar um algoritmo que leia 150 notas de provas e:
+calcule a média das notas;
+calcule quantas notas estão acima da média (Média de aprovação: 7,0);
+
+3 - Elabore um algoritmo leia um vetor X de 6 valores inteiros.
+Pegue os valores pares do vetor X e jogue no vetor de nome PAR
+Pegue os valore impares do vetor X e jogue no vetor de nome IMPAR
+Depois imprima os vetores PAR e IMPAR
+
+4 - Elabore um algoritmo que leia um vetor de 10 posições. 
+Depois solicite do usuário um valor para ser buscado no vetor. 
+O programa deverá mostrar o valor e a posição onde o valor estiver caso seja encontrado.

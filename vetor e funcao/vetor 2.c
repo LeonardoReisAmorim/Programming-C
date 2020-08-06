@@ -1,0 +1,24 @@
+#include <stdio.h>
+
+main()
+{
+	int i,v[10],cont=0;
+	
+	for(i=0;i<10;i++)
+	{
+		printf("digite os valores: ");
+		scanf("%d",&v[i]);
+	}
+	for(i=0;i<10;i++)
+	{
+		if(v[i]%2==0)
+		{
+			cont++;
+		}
+		else
+		{
+			cont=cont;		
+		}
+	}
+	printf("%d",cont);
+}
