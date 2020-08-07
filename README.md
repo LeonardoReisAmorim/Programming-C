@@ -12,3 +12,5 @@ Códigos de estudo sobre Matriz / Matriz study codes: [clique aqui/click here](h
 Códigos de estudo sobre Struct / Struct study codes:  [clique aqui/click here](https://github.com/LeonardoReisAmorim/Programming-C/tree/master/struct)  
 
 Trabalhos feitos em C / Works done in C: [clique aqui/click here](https://github.com/LeonardoReisAmorim/Programming-C/tree/master/trabalhos%20em%20c) 
+
+Códigos de estudo sobre Vetor e função / Vector and function study codes: [clique aqui/click here](https://github.com/LeonardoReisAmorim/Programming-C/tree/master/vetor%20e%20funcao)  
