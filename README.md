@@ -10,3 +10,5 @@ Aulas sobre estrutura e lógica em C / Teaching on structure and logic in C: [cl
 Códigos de estudo sobre Matriz / Matriz study codes: [clique aqui/click here](https://github.com/LeonardoReisAmorim/Programming-C/tree/master/matriz) 
 
 Códigos de estudo sobre Struct / Struct study codes:  [clique aqui/click here](https://github.com/LeonardoReisAmorim/Programming-C/tree/master/struct)  
+
+Trabalhos feitos em C / Works done in C: [clique aqui/click here](https://github.com/LeonardoReisAmorim/Programming-C/tree/master/trabalhos%20em%20c) 
