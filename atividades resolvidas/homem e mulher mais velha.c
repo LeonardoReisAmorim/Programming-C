@@ -1,3 +1,5 @@
+//pede a soma das idades do homem mais velho com a mulher mais nova e o produto das idades do homem mais novo com a mulher mais velha:
+
 #include <stdio.h>
 main()
 {

@@ -1,3 +1,12 @@
+/*Foi feita uma pesquisa entre os 1000 habitantes de uma região para coletar os seguintes dados:
+sexo (0feminino, 1-masculino), idade e altura. Faça um algoritmo que leia as informações coletadas
+e mostre as seguintes informações:
+a) média da idade do grupo;
+b) média da altura das mulheres;
+c) média da idade dos homens;
+*/
+
+
 #include <stdio.h>
 
 main()

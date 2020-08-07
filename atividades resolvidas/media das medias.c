@@ -1,3 +1,5 @@
+//pede para dizer a media das medias, a maior media e a menor media
+
 #include <stdio.h>
 
 main()
@@ -53,5 +55,3 @@ main()
 	printf("\na maior media foi: %.2f ",maior);
 	printf("\na menor media foi: %.2f ",menor);
 }
-
-//codigo nao finalizado, procurar sidney

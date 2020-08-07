@@ -1,3 +1,5 @@
+//conversor. Converter dolar em reais
+
 #include <stdio.h>
 
 float conversaodolar(float a,float b)

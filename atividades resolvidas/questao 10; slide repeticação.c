@@ -1,3 +1,6 @@
+//Elabore um programa que leia 10 idades e diga quantas pessoas são menores de
+//idade
+
 #include <stdio.h>
 
 main()

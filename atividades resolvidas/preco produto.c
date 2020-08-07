@@ -1,3 +1,5 @@
+//mercadinho
+
 #include <stdio.h>
 
 main()
@@ -12,7 +14,7 @@ main()
 		
 		if(i>=0)
 		{
-			printf("\ndigite o preço de custo de cada produto: ");
+			printf("\ndigite o preco de custo de cada produto: ");
 			scanf("%f",&precus);
 			contp++;
 			somas=somas+precus;

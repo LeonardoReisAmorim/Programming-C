@@ -1,3 +1,5 @@
+//votos de um canditado
+
 #include <stdio.h>
 
 main()

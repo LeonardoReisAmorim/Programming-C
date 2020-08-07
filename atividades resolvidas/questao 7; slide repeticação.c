@@ -1,3 +1,5 @@
+//Elabore um programa que leia 20 números e diga quantos são maiores que 50
+
 #include <stdio.h>
 
 main()

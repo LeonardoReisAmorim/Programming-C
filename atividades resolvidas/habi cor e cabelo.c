@@ -1,3 +1,5 @@
+//Nesta atividade pede para dizer a maior idade dos habitantes, a quantidade de individuos do sexo feminino cuja idade esta entre 18 e 35 anos e a quantidade de indivï¿½duos do sexo feminino que tenham olhos verdes e cabelos louros
+
 #include <stdio.h>
 
 main()
@@ -54,5 +56,5 @@ main()
 	}
 	printf("\na maior idade dos habitantes e: %d",maior);
 	printf("\na quantidade de individuos do sexo feminino cuja idade esta entre 18 e 35 anos e: %d",conti);
-	printf("\na quantidade de indivíduos do sexo feminino que tenham olhos verdes e cabelos louros e: %d",contc);
+	printf("\na quantidade de indivï¿½duos do sexo feminino que tenham olhos verdes e cabelos louros e: %d",contc);
 }

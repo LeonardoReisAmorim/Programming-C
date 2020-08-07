@@ -1,3 +1,5 @@
+//pede para dizer o maior e o menor dos numeros 
+
 #include <stdio.h>
 
 main()
