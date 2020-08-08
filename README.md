@@ -3,9 +3,9 @@
 ***
 ## Algoritmos, lógica de programação, trabalhos, exercícios e muito mais feito na linguagem C
 ***
-+ Exercicios de **logica** em *C* / **Logic** exercises in *C*:      [ACESSE AQUI / ACCESS HERE](https://github.com/LeonardoReisAmorim/Programming-C/tree/master/atividades%20resolvidas)
++ Exercicios resolvidos de **logica** em *C* / **Logic** exercises resolved in *C*:      [ACESSE AQUI / ACCESS HERE](https://github.com/LeonardoReisAmorim/Programming-C/tree/master/atividades%20resolvidas)
 
-+ Aulas sobre **estrutura e lógica** em *C* / Teaching on **structure and logic** in *C*:      [ACESSE AQUI / ACCESS HERE](https://github.com/LeonardoReisAmorim/Programming-C/tree/master/aulas%20programa%C3%A7%C3%A3o%20c) 
++ Aulas sobre **estrutura e lógica** em *C* e exercícios / Teaching on **structure and logic** in *C* and exercises:      [ACESSE AQUI / ACCESS HERE](https://github.com/LeonardoReisAmorim/Programming-C/tree/master/aulas%20programa%C3%A7%C3%A3o%20c) 
 
 + Códigos de estudo sobre **Matriz** / **Matriz** study codes:     [ACESSE AQUI / ACCESS HERE](https://github.com/LeonardoReisAmorim/Programming-C/tree/master/matriz) 
 
