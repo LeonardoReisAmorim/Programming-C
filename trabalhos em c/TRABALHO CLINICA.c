@@ -1,3 +1,41 @@
+/*Uma clinica que realiza exames de imagem (mamografia, raio x, ultrassonografia , etc...) está precisando de um sistema simples para realização
+de cadastro de exames diários.
+
+Todos os dias são distribuídas 30 senhas para atendimento na clinica. Depois de distribuídas as senhas, são realizados os cadastros dos
+pacientes e seus respectivos exames.
+
+Para realizar o cadastro do paciente são solicitados os seguintes dados: (CPF,nome, sobrenome, idade, sexo), junto com esses dados ainda são
+cadastrados o tipo de exame a ser realizado, o nome do médico.
+
+Cada tipo de exame possui um código que o identifica:
+
+- 001 – raio x
+
+- 002 – mamografia
+
+- 003 – ultrassonografia
+
+- 004 – ressonância
+
+Os funcionários que irão utilizar o sistema deverão ter acesso mediante a digitação do código de acesso (102030), sem esse código o usuário
+não terá acesso ao menu principal.
+
+Após cadastrar todos os clientes, os funcionários deverão imprimir todas fichas com os dados cadastrados para que possa iniciar o atendimento
+dos exames.
+
+Todos os pacientes cadastrados deverão ser consultados no sistema pelo seu CPF.
+
+No final do expediente serão realizadas as seguintes consultas:
+
+- A quantidade de cada exame realizado
+
+- O exame mais realizado no dia
+
+- A quantidade de pessoas atendidas separadas por sexo
+
+- Os dados dos pacientes que realizaram exame de mamografia
+*/
+
 #include <stdio.h>
 #include <string.h>
 int i;
