@@ -1,0 +1,254 @@
+#include <stdio.h>
+#include "Aluno.h"
+#include "Professor.h"
+#include "Disciplinas.h"
+#define TAM 5
+#define sucesso 1
+#define erro_matricula 2
+#define erro_data_nasc 3
+#define erro_sexo 4
+#define erro_cpf 5
+
+int menu_principal();
+int menu_cadastro();
+int menu_exclusao();
+int menu_alteracao();
+int menu_relatorios();
+
+typedef struct Data
+{
+    int dia, mes, ano;
+}Data;
+
+typedef struct Alunos
+{
+    int matrícula;
+    char nome[100];
+    char sexo; 
+    Data data_nasc;
+    char cpf[16];
+}Alunos;
+
+typedef struct Professores
+{
+    int matrícula;
+    char nome[100];
+    char sexo; 
+    Data data_nasc;
+    char cpf[16];
+}Professores;
+
+typedef struct Disciplinas
+{
+    char Nome[100]; 
+    int codigo, semestre, id_professor;
+}Disciplinas;
+
+
+int main()
+{
+    int opcao_principal, opcao_cadastro, opcao_exclusao, opcao_alteracao, opcao_relatorios, qtd=0,sair = 0;
+    
+    while (!sair){
+    opcao_principal=menu_principal();
+        switch (opcao_principal){
+            case 0:
+                sair = 1;
+                break;
+            case 1:
+                opcao_cadastro=menu_cadastro();
+                switch (opcao_cadastro){
+                    case 1:
+                        /* code */
+                        break;
+                    case 2:
+                        /* code */
+                        break;
+                    case 3:
+                        /* code */
+                        break;
+                    default:
+                        printf("opcao invalida\n");
+                        break;
+                }
+                break;
+            case 2:
+                opcao_exclusao=menu_exclusao();
+                switch (opcao_exclusao){
+                case 1:
+                    /* code */
+                    break;
+                case 2:
+                    /* code */
+                    break;
+                case 3:
+                    /* code */
+                    break;
+                default:
+                    printf("opcao invalida\n");
+                    break;
+                }
+                break;
+            case 3:
+                opcao_alteracao=menu_alteracao(); 
+                switch (opcao_alteracao){
+                case 1:
+                    /* code */
+                    break;
+                case 2:
+                    /* code */
+                    break;
+                case 3:
+                    /* code */
+                    break;
+                default:
+                    printf("opcao invalida\n");
+                    break;
+                }
+                break;
+            case 4:
+                printf("Inserir aluno em uma disciplina");
+                /**/
+                break;
+            case 5:
+                printf("Excluir aluno de uma disciplina");
+                /**/
+                break;
+            case 6:
+                opcao_relatorios=menu_relatorios();
+                switch (opcao_alteracao){
+                    case 1:
+                        /* code */
+                        break;
+                    case 2:
+                        /* code */
+                        break;
+                    case 3:
+                        /* code */
+                        break;
+                    case 4:
+                        /* code */
+                        break;
+                    case 5:
+                        /* code */
+                        break;
+                    case 6:
+                        /* code */
+                        break;
+                    case 7:
+                        /* code */
+                        break;
+                    case 8:
+                        /* code */
+                        break;
+                    case 9:
+                        /* code */
+                        break;
+                    case 10:
+                        /* code */
+                        break;
+                    case 11:
+                        /* code */
+                        break;
+                    case 12:
+                        /* code */
+                        break;
+                    case 13:
+                        /* code */
+                        break;
+                    case 14:
+                        /* code */
+                        break;
+
+                    default:
+                        printf("opcao invalida\n");
+                        break;
+                }
+                break;
+            default:
+                printf("opcao invalida\n");
+                sair=1;
+            break;
+        }
+    }
+    
+    
+    return 0;
+}
+
+int menu_principal(){
+    int opcao=0;
+
+    printf("\nDigite a opcao:\n");
+    printf("0 - Sair\n");
+    printf("1 - Cadastro\n");
+    printf("2 - Exclusao\n");
+    printf("3 - Alteracao\n");
+    printf("4 - Inserir aluno em uma disciplina\n");
+    printf("5 - Excluir aluno de uma disciplina\n");
+    printf("6 - Relatorios\n");
+    scanf("%d",&opcao);
+
+    return opcao;
+}
+
+int menu_cadastro(){
+    int opcao=0;
+
+    printf("\nDigite a opcao:\n");
+    printf("1 - Cadastro de Aluno\n");
+    printf("2 - Cadastro de Professor\n");
+    printf("3 - Cadastro de Disciplina\n");
+    scanf("%d",&opcao);
+
+    return opcao;
+}
+
+int menu_exclusao(){
+    int opcao=0;
+
+    printf("\nDigite a opcao:\n");
+    printf("1 - Excluir Aluno\n");
+    printf("2 - Excluir Professor\n");
+    printf("3 - Excluir Disciplina\n");
+    scanf("%d",&opcao);
+
+    return opcao;
+}
+
+int menu_alteracao(){
+    int opcao=0;
+
+    printf("\nDigite a opcao:\n");
+    printf("1 - Alterar Aluno\n");
+    printf("2 - Alterar Professor\n");
+    printf("3 - Alterar Disciplina\n");
+    scanf("%d",&opcao);
+
+    return opcao;
+}
+
+int menu_relatorios(){
+    int opcao=0;
+
+    printf("\nDigite a opcao:\n");
+    printf("1 - Listar Alunos:\n");
+    printf("2 - Listar Professores:\n");
+    printf("3 - Listar Disciplinas (dados da disciplina sem os alunos):\n");
+    printf("4 - Listar uma disciplina (dados da disciplina e os alunos matriculados):\n");
+    printf("5 - Listar Alunos por sexo (Masculino/Feminino):\n");
+    printf("6 - Listar Alunos ordenados por Nome:\n");
+    printf("7 - Listar Alunos ordenados por data de nascimento:\n");
+    printf("8 - Listar Professores por sexo (Masculino/Feminino):\n");
+    printf("9 - Listar Professores ordenados por Nome:\n");
+    printf("10 - Listar Professores ordenados por data de nascimento:\n");
+    printf("11 - Aniversariantes do mes:\n");
+    printf("12 - Lista de pessoas (professor/aluno) a partir de uma busca:\n");
+    printf("13 - Lista de alunos matriculados em menos de 3 disciplinas:\n");
+    printf("14 - Lista de Disciplinas, com nome do professor, que extrapolam 40 vagas.:\n");
+    scanf("%d",&opcao);
+
+    return opcao;
+}
+
+
