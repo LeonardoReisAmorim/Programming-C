@@ -15,39 +15,10 @@ int menu_exclusao();
 int menu_alteracao();
 int menu_relatorios();
 
-typedef struct Data
-{
-    int dia, mes, ano;
-}Data;
-
-typedef struct Alunos
-{
-    int matrícula;
-    char nome[100];
-    char sexo; 
-    Data data_nasc;
-    char cpf[16];
-}Alunos;
-
-typedef struct Professores
-{
-    int matrícula;
-    char nome[100];
-    char sexo; 
-    Data data_nasc;
-    char cpf[16];
-}Professores;
-
-typedef struct Disciplinas
-{
-    char Nome[100]; 
-    int codigo, semestre, id_professor;
-}Disciplinas;
-
-
 int main()
 {
-    int opcao_principal, opcao_cadastro, opcao_exclusao, opcao_alteracao, opcao_relatorios, qtd=0,sair = 0;
+    Alunos alunos[TAM];
+    int opcao_principal, opcao_cadastro, opcao_exclusao, opcao_alteracao, opcao_relatorios, qtd=0,sair = 0,retorno=0;
     
     while (!sair){
     opcao_principal=menu_principal();
@@ -59,7 +30,15 @@ int main()
                 opcao_cadastro=menu_cadastro();
                 switch (opcao_cadastro){
                     case 1:
-                        /* code */
+                        retorno = Inseriraluno(alunos,qtd);
+                        if(retorno==1){
+                            printf("\nMatricula realizada com sucesso\n");
+                            qtd++;
+                        }else if (retorno==2){
+                            printf("\nMatricula invalida\n");
+                        }else if(retorno==4){
+                            printf("\nSexo Invalido\n");
+                        } 
                         break;
                     case 2:
                         /* code */
@@ -107,18 +86,21 @@ int main()
                 }
                 break;
             case 4:
-                printf("Inserir aluno em uma disciplina");
+                printf("Inserir aluno em uma disciplina\n");
                 /**/
                 break;
             case 5:
-                printf("Excluir aluno de uma disciplina");
+                printf("Excluir aluno de uma disciplina\n");
                 /**/
                 break;
             case 6:
                 opcao_relatorios=menu_relatorios();
-                switch (opcao_alteracao){
+                switch (opcao_relatorios){
                     case 1:
-                        /* code */
+                        if(qtd==0){
+                            qtd=-1;
+                        }
+                        Listaralunos(alunos, qtd);
                         break;
                     case 2:
                         /* code */
@@ -250,5 +232,3 @@ int menu_relatorios(){
 
     return opcao;
 }
-
-
