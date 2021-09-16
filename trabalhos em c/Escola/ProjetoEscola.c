@@ -41,7 +41,15 @@ int main()
                         } 
                         break;
                     case 2:
-                        /* code */
+                        retorno = excluirAluno(alunos, qtd);
+                    if(retorno == 1)
+                    {
+                        printf("\nExclusão realizada com sucesso!\n");
+                        qtd--;
+                    }
+                    else{
+                        printf("Erro na exclusão. A matrícula informada é inválida.\n");
+                    }
                         break;
                     case 3:
                         /* code */

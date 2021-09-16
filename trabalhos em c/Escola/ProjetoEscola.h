@@ -12,7 +12,7 @@ typedef struct Data
 
 typedef struct Alunos
 {
-    int matrícula;
+    int matricula;
     char nome[100];
     char sexo; 
     Data data_nasc;
@@ -21,7 +21,7 @@ typedef struct Alunos
 
 typedef struct Professores
 {
-    int matrícula;
+    int matricula;
     char nome[100];
     char sexo; 
     Data data_nasc;

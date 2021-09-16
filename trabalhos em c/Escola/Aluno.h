@@ -5,7 +5,7 @@ typedef struct Data
 
 typedef struct Alunos
 {
-    int matrícula;
+    int matricula;
     char nome[100];
     char sexo; 
     Data data_nasc;
@@ -14,3 +14,4 @@ typedef struct Alunos
 
 void Listaralunos(Alunos alunos[], int qtd_alunos);
 int Inseriraluno(Alunos alunos[], int qtd_alunos);
+int excluirAluno (Alunos alunos[], int qtd_alunos);

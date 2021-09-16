@@ -11,7 +11,7 @@ void Listaralunos(Alunos alunos[], int qtd_alunos){
 
         for(i=0;i<qtd_alunos;i++){
             printf("\n");
-            printf("Matricula .....:  %d\n",alunos[i].matrícula);
+            printf("Matricula .....:  %d\n",alunos[i].matricula);
             printf("Nome .....:  %s\n",alunos[i].nome);
             printf("Sexo .....:  %c\n",alunos[i].sexo);
             printf("Data de nascimento .....:  %d/%d/%d\n",alunos[i].data_nasc.dia, alunos[i].data_nasc.mes, alunos[i].data_nasc.ano);
@@ -26,10 +26,10 @@ int Inseriraluno(Alunos alunos[], int qtd_alunos){
     printf("\n------------ Cadastro do aluno ------------\n");
 
     printf("\nDigite a matricula do aluno...: ");
-    scanf("%d",&alunos[qtd_alunos].matrícula);
+    scanf("%d",&alunos[qtd_alunos].matricula);
     setbuf(stdin, 0);
     
-    if (alunos[qtd_alunos].matrícula<=0){
+    if (alunos[qtd_alunos].matricula<=0){
         return erro_matricula;
     }
 
@@ -72,4 +72,30 @@ int Inseriraluno(Alunos alunos[], int qtd_alunos){
     }
      
     return sucesso;
+}
+
+int excluirAluno (Alunos alunos[], int qtd_alunos){
+    
+    int i, matricula, posicao = -1;
+
+    printf("\n------------ Exclusão do aluno ------------\n");
+    printf("\nInforme a matrícula do aluno a ser excluído: ");
+    scanf("%d", &matricula);
+
+    for(i = 0;  i < qtd_alunos; i++){
+        if(matricula == alunos[i].matricula){
+            posicao = i;
+        }
+    }
+
+    if(posicao == -1){
+        return 0;
+    }
+    else{
+        for(i = posicao; i < qtd_alunos; i++){
+        alunos[i] = alunos[i + 1];
+        }
+        return 1;
+        // Falta realocar o tamanho do vetor alunos em -1.
+    }
 }
