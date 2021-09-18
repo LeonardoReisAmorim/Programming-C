@@ -1,8 +1,3 @@
-typedef struct Data
-{
-    int dia, mes, ano;
-}Data;
-
 typedef struct Professores
 {
     int matricula;

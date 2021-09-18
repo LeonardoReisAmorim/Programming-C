@@ -1,5 +1,6 @@
 #include <stdio.h>
 #include <stdlib.h>
+#include <string.h>
 #include "ProjetoEscola.h"
 
 void listarProfessores (Professores professores[], int qtd_professores){
