@@ -1,4 +1,5 @@
 #include <stdio.h>
+#include <stdlib.h>
 #include "ProjetoEscola.h"
 #include "string.h"
 
@@ -95,7 +96,7 @@ int excluirAluno (Alunos alunos[], int qtd_alunos){
         for(i = posicao; i < qtd_alunos; i++){
         alunos[i] = alunos[i + 1];
         }
+        alunos = realloc(alunos, --qtd_alunos * sizeof(Alunos));
         return 1;
-        // Falta realocar o tamanho do vetor alunos em -1.
     }
 }
