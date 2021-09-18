@@ -18,7 +18,8 @@ int menu_relatorios();
 int main()
 {
     Alunos alunos[TAM];
-    int opcao_principal, opcao_cadastro, opcao_exclusao, opcao_alteracao, opcao_relatorios, qtd=0,sair = 0,retorno=0;
+    Professores professores[TAM];
+    int opcao_principal, opcao_cadastro, opcao_exclusao, opcao_alteracao, opcao_relatorios, qtd_aluno = 0, qtd_prof = 0, sair = 0, retorno=0;
     
     while (!sair){
     opcao_principal=menu_principal();
@@ -30,10 +31,10 @@ int main()
                 opcao_cadastro=menu_cadastro();
                 switch (opcao_cadastro){
                     case 1:
-                        retorno = Inseriraluno(alunos,qtd);
+                        retorno = Inseriraluno(alunos, qtd_aluno);
                         if(retorno==1){
                             printf("\nMatricula realizada com sucesso\n");
-                            qtd++;
+                            qtd_aluno++;
                         }else if (retorno==2){
                             printf("\nMatricula invalida\n");
                         }else if(retorno==4){
@@ -41,15 +42,15 @@ int main()
                         } 
                         break;
                     case 2:
-                        retorno = excluirAluno(alunos, qtd);
-                    if(retorno == 1)
-                    {
-                        printf("\nExclusão realizada com sucesso!\n");
-                        qtd--;
-                    }
-                    else{
-                        printf("Erro na exclusão. A matrícula informada é inválida.\n");
-                    }
+                        retorno = inserirProfessor(professores, qtd_prof);
+                        if(retorno==1){
+                            printf("\nMatricula realizada com sucesso\n");
+                            qtd_prof++;
+                        }else if (retorno==2){
+                            printf("\nMatricula invalida\n");
+                        }else if(retorno==4){
+                            printf("\nSexo Invalido\n");
+                        } 
                         break;
                     case 3:
                         /* code */
@@ -63,10 +64,26 @@ int main()
                 opcao_exclusao=menu_exclusao();
                 switch (opcao_exclusao){
                 case 1:
-                    /* code */
+                    retorno = excluirAluno(alunos, qtd_aluno);
+                    if(retorno == 1)
+                    {
+                        printf("\nExclusão realizada com sucesso!\n");
+                        qtd_aluno--;
+                    }
+                    else{
+                        printf("Erro na exclusão. A matrícula informada é inválida.\n");
+                    }
                     break;
                 case 2:
-                    /* code */
+                    retorno = excluirProfessor(professores, qtd_prof);
+                    if(retorno == 1)
+                    {
+                        printf("\nExclusão realizada com sucesso!\n");
+                        qtd_prof--;
+                    }
+                    else{
+                        printf("Erro na exclusão. A matrícula informada é inválida.\n");
+                    }
                     break;
                 case 3:
                     /* code */
@@ -105,13 +122,16 @@ int main()
                 opcao_relatorios=menu_relatorios();
                 switch (opcao_relatorios){
                     case 1:
-                        if(qtd==0){
-                            qtd=-1;
+                        if(qtd_aluno==0){
+                            qtd_aluno=-1;
                         }
-                        Listaralunos(alunos, qtd);
+                        Listaralunos(alunos, qtd_aluno);
                         break;
                     case 2:
-                        /* code */
+                        if(qtd_prof==0){
+                            qtd_prof=-1;
+                        }
+                        listarProfessores(professores, qtd_prof);
                         break;
                     case 3:
                         /* code */
