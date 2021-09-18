@@ -22,7 +22,14 @@ int main()
     int opcao_principal, opcao_cadastro, opcao_exclusao, opcao_alteracao, opcao_relatorios, qtd_aluno = 0, qtd_prof = 0, sair = 0, retorno=0;
     
     while (!sair){
-    opcao_principal=menu_principal();
+        if(qtd_aluno == -1){
+            qtd_aluno = 0;
+        }
+        if (qtd_prof == -1){
+            qtd_prof = 0;
+        }
+    
+        opcao_principal=menu_principal();
         switch (opcao_principal){
             case 0:
                 sair = 1;
@@ -140,7 +147,10 @@ int main()
                         /* code */
                         break;
                     case 5:
-                        /* code */
+                        if(qtd_aluno==0){
+                            qtd_aluno=-1;
+                        }
+                        listar_por_sexo(alunos, qtd_aluno);
                         break;
                     case 6:
                         /* code */

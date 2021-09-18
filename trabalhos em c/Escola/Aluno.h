@@ -15,3 +15,4 @@ typedef struct Alunos
 void Listaralunos(Alunos alunos[], int qtd_alunos);
 int Inseriraluno(Alunos alunos[], int qtd_alunos);
 int excluirAluno (Alunos alunos[], int qtd_alunos);
+void listar_por_sexo(Alunos alunos[], int qtd_alunos);
