@@ -8,6 +8,8 @@
 #define erro_data_nasc 3
 #define erro_sexo 4
 #define erro_cpf 5
+#define erro_cod_disciplina 6
+#define erro_semestre_disciplina 7
 
 int menu_principal();
 int menu_cadastro();
@@ -19,7 +21,8 @@ int main()
 {
     Alunos alunos[TAM];
     Professores professores[TAM];
-    int opcao_principal, opcao_cadastro, opcao_exclusao, opcao_alteracao, opcao_relatorios, qtd_aluno = 0, qtd_prof = 0, sair = 0, retorno=0;
+    Disciplinas disciplinas[TAM];
+    int opcao_principal, opcao_cadastro, opcao_exclusao, opcao_alteracao, opcao_relatorios, qtd_aluno = 0, qtd_prof = 0, qtd_disciplinas = 0, sair = 0, retorno=0;
     
     while (!sair){
         if(qtd_aluno == -1){
@@ -51,16 +54,26 @@ int main()
                     case 2:
                         retorno = inserirProfessor(professores, qtd_prof);
                         if(retorno==1){
-                            printf("\nMatricula realizada com sucesso\n");
+                            printf("\nMatricula realizada com sucesso!\n");
                             qtd_prof++;
                         }else if (retorno==2){
-                            printf("\nMatricula invalida\n");
+                            printf("\nMatricula invalida.\n");
                         }else if(retorno==4){
-                            printf("\nSexo Invalido\n");
+                            printf("\nSexo Invalido.\n");
                         } 
                         break;
                     case 3:
-                        /* code */
+                        retorno = inserirDisciplina(disciplinas, qtd_disciplinas, professores, qtd_prof);
+                        if(retorno==1){
+                            printf("\nCadastro realizado com sucesso!\n");
+                            qtd_disciplinas++;
+                        }
+                        else if(retorno==6){
+                            printf("\nCodigo invalido.\n");
+                        }
+                        else if(retorno==2){
+                            printf("\nMatricula do professor da disciplina invalida.\n");
+                        }
                         break;
                     default:
                         printf("opcao invalida\n");
