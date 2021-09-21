@@ -34,7 +34,7 @@ int Inseriraluno(Alunos alunos[], int qtd_alunos){
         return erro_matricula;
     }
 
-    printf("\ndigite o nome do aluno...: ");
+    printf("\nDigite o nome do aluno...: ");
     fgets(alunos[qtd_alunos].nome, 100, stdin); 
     size_t ln = strlen(alunos[qtd_alunos].nome) - 1; 
     if (alunos[qtd_alunos].nome[ln] == '\n'){
