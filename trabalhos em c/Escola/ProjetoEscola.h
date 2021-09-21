@@ -4,6 +4,8 @@
 #define erro_data_nasc 3
 #define erro_sexo 4
 #define erro_cpf 5
+#define erro_cod_disciplina 6
+#define erro_semestre_disciplina 7
 
 typedef struct Data
 {
@@ -30,6 +32,6 @@ typedef struct Professores
 
 typedef struct Disciplinas
 {
-    char Nome[100]; 
+    char nome[100]; 
     int codigo, semestre, id_professor;
 }Disciplinas;
