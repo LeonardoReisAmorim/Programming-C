@@ -65,7 +65,7 @@ int main()
                     case 3:
                         retorno = inserirDisciplina(disciplinas, qtd_disciplinas, professores, qtd_prof);
                         if(retorno==1){
-                            printf("\nCadastro realizado com sucesso!\n");
+                            printf("\nCadastro da disciplina realizado com sucesso!\n");
                             qtd_disciplinas++;
                         }
                         else if(retorno==6){

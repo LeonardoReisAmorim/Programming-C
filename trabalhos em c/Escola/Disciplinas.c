@@ -4,7 +4,11 @@
 #include "ProjetoEscola.h"
 
 int inserirDisciplina (Disciplinas disciplinas[], int qtd_discip, Professores professores[], int qtd_prof){
-    int i;
+    int i,j;
+    qtd_prof--;
+    setbuf(stdin, 0);
+    printf("\n%d",qtd_prof);
+    printf("\n%d",professores[qtd_prof].matricula);
 
     printf("\n------------ Cadastro de Disciplina ------------\n");
 
@@ -34,15 +38,14 @@ int inserirDisciplina (Disciplinas disciplinas[], int qtd_discip, Professores pr
     printf("\nInforme a matricula do professor da disciplina: ");
     scanf("%d", &disciplinas[qtd_discip].id_professor);
     setbuf(stdin, 0);
-
-    /* 
-    Verificando se a matricula informada é válida e já foi cadastrada.
-
-    for(i = 0; i < qtd_prof; i++){
-        if(disciplinas[qtd_discip].id_professor == professores[qtd_prof].matricula){
-            return sucesso;
+    
+    //Verificando se a matricula informada é válida e já foi cadastrada.
+    for(i = 0; i <= qtd_discip; i++){
+        for (j=0; j<=qtd_prof; j++){
+           if(disciplinas[i].id_professor == professores[j].matricula){
+                return sucesso;
+           }
         }
     }
     return erro_matricula;
-    */ 
 }
