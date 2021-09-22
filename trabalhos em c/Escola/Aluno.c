@@ -98,16 +98,6 @@ int excluirAluno (Alunos alunos[], int qtd_alunos){
         for(i = posicao; i < qtd_alunos; i++){
         alunos[i] = alunos[i + 1];
         }
-        //a = realloc(a, --qtd_alunos * sizeof(Alunos));
-        for(i=0;i<qtd_alunos;i++){
-            printf("\n");
-            printf("Matricula .....:  %d\n",alunos[i].matricula);
-            printf("Nome .....:  %s\n",alunos[i].nome);
-            printf("Sexo .....:  %c\n",alunos[i].sexo);
-            printf("Data de nascimento .....:  %d/%d/%d\n",alunos[i].data_nasc.dia, alunos[i].data_nasc.mes, alunos[i].data_nasc.ano);
-            printf("CPF .....:  %s\n",alunos[i].cpf);
-            printf("\n%d\n", i);
-        }
         return sucesso;
     }
 }
