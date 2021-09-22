@@ -1,4 +1,5 @@
 #include <stdio.h>
+#include <stdlib.h>
 #include "Aluno.h"
 #include "Professor.h"
 #include "Disciplinas.h"
@@ -22,17 +23,11 @@ int main()
     Alunos alunos[TAM];
     Professores professores[TAM];
     Disciplinas disciplinas[TAM];
+
     int opcao_principal, opcao_cadastro, opcao_exclusao, opcao_alteracao, opcao_relatorios, qtd_aluno = 0, qtd_prof = 0, qtd_disciplinas = 0, sair = 0, retorno=0;
     
     while (!sair){
-        if(qtd_aluno == -1){
-            qtd_aluno = 0;
-        }
-        if (qtd_prof == -1){
-            qtd_prof = 0;
-        }
-    
-        opcao_principal=menu_principal();
+    opcao_principal=menu_principal();
         switch (opcao_principal){
             case 0:
                 sair = 1;
@@ -65,7 +60,7 @@ int main()
                     case 3:
                         retorno = inserirDisciplina(disciplinas, qtd_disciplinas, professores, qtd_prof);
                         if(retorno==1){
-                            printf("\nCadastro da disciplina realizado com sucesso!\n");
+                            printf("\nCadastro realizado com sucesso!\n");
                             qtd_disciplinas++;
                         }
                         else if(retorno==6){
@@ -106,7 +101,15 @@ int main()
                     }
                     break;
                 case 3:
-                    /* code */
+                    retorno = excluirDisciplina(disciplinas, qtd_disciplinas);
+                    if(retorno == 1)
+                    {
+                        printf("\nExclusão realizada com sucesso!\n");
+                        qtd_disciplinas--;
+                    }
+                    else{
+                        printf("Erro na exclusão. O codigo informado é invalido.\n");
+                    }
                     break;
                 default:
                     printf("opcao invalida\n");
@@ -154,16 +157,16 @@ int main()
                         listarProfessores(professores, qtd_prof);
                         break;
                     case 3:
-                        /* code */
+                        if(qtd_disciplinas==0){
+                            qtd_disciplinas=-1;
+                        }
+                        listarDisciplinas(disciplinas, qtd_disciplinas);
                         break;
                     case 4:
                         /* code */
                         break;
                     case 5:
-                        if(qtd_aluno==0){
-                            qtd_aluno=-1;
-                        }
-                        listar_por_sexo(alunos, qtd_aluno);
+                        /* code */
                         break;
                     case 6:
                         /* code */
@@ -172,10 +175,7 @@ int main()
                         /* code */
                         break;
                     case 8:
-                        if(qtd_prof==0){
-                            qtd_prof=-1;
-                        }
-                        listar_por_sexo_prof(professores, qtd_prof);
+                        /* code */
                         break;
                     case 9:
                         /* code */
@@ -207,7 +207,6 @@ int main()
             break;
         }
     }
-    
     
     return 0;
 }

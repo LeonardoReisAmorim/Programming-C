@@ -96,60 +96,7 @@ int excluirProfessor (Professores professores[], int qtd_professores){
         for(i = posicao; i < qtd_professores; i++){
         professores[i] = professores[i + 1];
         }
-        professores = realloc(professores, --qtd_professores * sizeof(Professores));
+        //professores = realloc(professores, --qtd_professores * sizeof(Professores));
         return 1;
     }
-}
-
-void listar_por_sexo_prof(Professores professor[], int qtd_prof){
-
-    int i, sexo=0,achou=0;
-    char sexo_informado;
-
-    if(qtd_prof<0){
-        printf("\nnao existem professores cadastrados\n");
-    }else{ 
-        setbuf(stdin, 0);
-        printf("\ndigite o sexo a ser listado...: ");
-        scanf("%c",&sexo_informado);
-        if(sexo_informado == 'm' || sexo_informado == 'M'){
-            printf("\n------------ Sexo masculino ------------\n");
-                for(i=0;i<qtd_prof;i++){
-                    if(professor[i].sexo == 'm' || professor[i].sexo == 'M'){
-                        printf("\n");
-                        printf("Matricula .....:  %d\n",professor[i].matricula);
-                        printf("Nome .....:  %s\n",professor[i].nome);
-                        printf("Sexo .....:  %c\n",professor[i].sexo); 
-                        printf("Data de nascimento .....:  %d/%d/%d\n",professor[i].data_nasc.dia, professor[i].data_nasc.mes, professor[i].data_nasc.ano);
-                        printf("CPF .....:  %s\n",professor[i].cpf);
-                        achou=1;
-                    }else{
-                        sexo=1;
-                    }
-                }
-                if(sexo==1 && achou==0){
-                    printf("\nnao existem professores do sexo masculino cadastrados\n");
-                }
-        }else if(sexo_informado == 'f' || sexo_informado == 'F'){
-            printf("\n\n");
-    
-            printf("\n------------ Sexo feminino ------------\n");
-            for(i=0;i<qtd_prof;i++){
-                if(professor[i].sexo == 'f' || professor[i].sexo == 'F'){
-                    printf("\n");
-                    printf("Matricula .....:  %d\n",professor[i].matricula);
-                    printf("Nome .....:  %s\n",professor[i].nome);
-                    printf("Sexo .....:  %c\n",professor[i].sexo); 
-                    printf("Data de nascimento .....:  %d/%d/%d\n",professor[i].data_nasc.dia, professor[i].data_nasc.mes, professor[i].data_nasc.ano);
-                    printf("CPF .....:  %s\n",professor[i].cpf);
-                    achou=1;
-                }else{
-                    sexo=1;
-                }
-            }
-            if(sexo==1 && achou==0){
-                printf("\nnao existem professores do sexo femininos cadastrados\n");  
-            }
-        }
-    } 
 }

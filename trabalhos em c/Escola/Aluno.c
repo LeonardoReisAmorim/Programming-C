@@ -38,7 +38,7 @@ int Inseriraluno(Alunos alunos[], int qtd_alunos){
 
     printf("\ndigite o nome do aluno...: ");
     fgets(alunos[qtd_alunos].nome, 100, stdin); 
-    size_t ln = strlen(alunos[qtd_alunos].nome) - 1; 
+    size_t ln = strlen(alunos[qtd_alunos].nome) - 1; //size_t = unsigned integer type
     if (alunos[qtd_alunos].nome[ln] == '\n'){
         alunos[qtd_alunos].nome[ln] = '\0';
     }
@@ -96,63 +96,18 @@ int excluirAluno (Alunos alunos[], int qtd_alunos){
     }
     else{
         for(i = posicao; i < qtd_alunos; i++){
-            alunos[i] = alunos[i + 1];
+        alunos[i] = alunos[i + 1];
         }
-        alunos = realloc(alunos, --qtd_alunos * sizeof(Alunos));
+        //a = realloc(a, --qtd_alunos * sizeof(Alunos));
+        for(i=0;i<qtd_alunos;i++){
+            printf("\n");
+            printf("Matricula .....:  %d\n",alunos[i].matricula);
+            printf("Nome .....:  %s\n",alunos[i].nome);
+            printf("Sexo .....:  %c\n",alunos[i].sexo);
+            printf("Data de nascimento .....:  %d/%d/%d\n",alunos[i].data_nasc.dia, alunos[i].data_nasc.mes, alunos[i].data_nasc.ano);
+            printf("CPF .....:  %s\n",alunos[i].cpf);
+            printf("\n%d\n", i);
+        }
         return sucesso;
     }
-}
-
-void listar_por_sexo(Alunos alunos[], int qtd_alunos){
-
-    int i, sexo=0,achou=0;
-    char sexo_informado;
-
-    if(qtd_alunos<0){
-        printf("\nnao existem alunos cadastrados\n");
-    }else{ 
-        setbuf(stdin, 0);
-        printf("\ndigite o sexo a ser listado...: ");
-        scanf("%c",&sexo_informado);
-        //printf("%c", &sexo_informado);
-        if(sexo_informado == 'm' || sexo_informado == 'M'){
-            printf("\n------------ Sexo masculino ------------\n");
-                for(i=0;i<qtd_alunos;i++){
-                    if(alunos[i].sexo == 'm' || alunos[i].sexo == 'M'){
-                        printf("\n");
-                        printf("Matricula .....:  %d\n",alunos[i].matricula);
-                        printf("Nome .....:  %s\n",alunos[i].nome);
-                        printf("Sexo .....:  %c\n",alunos[i].sexo); 
-                        printf("Data de nascimento .....:  %d/%d/%d\n",alunos[i].data_nasc.dia, alunos[i].data_nasc.mes, alunos[i].data_nasc.ano);
-                        printf("CPF .....:  %s\n",alunos[i].cpf);
-                        achou=1;
-                    }else{
-                        sexo=1;
-                    }
-                }
-                if(sexo==1 && achou==0){
-                    printf("\nnao existem alunos do sexo masculino cadastrados\n");
-                }
-        }else if(sexo_informado == 'f' || sexo_informado == 'F'){
-            printf("\n\n");
-    
-            printf("\n------------ Sexo feminino ------------\n");
-            for(i=0;i<qtd_alunos;i++){
-                if(alunos[i].sexo == 'f' || alunos[i].sexo == 'F'){
-                    printf("\n");
-                    printf("Matricula .....:  %d\n",alunos[i].matricula);
-                    printf("Nome .....:  %s\n",alunos[i].nome);
-                    printf("Sexo .....:  %c\n",alunos[i].sexo); 
-                    printf("Data de nascimento .....:  %d/%d/%d\n",alunos[i].data_nasc.dia, alunos[i].data_nasc.mes, alunos[i].data_nasc.ano);
-                    printf("CPF .....:  %s\n",alunos[i].cpf);
-                    achou=1;
-                }else{
-                    sexo=1;
-                }
-            }
-            if(sexo==1 && achou==0){
-                printf("\nnao existem alunos do sexo femininos cadastrados\n");  
-            }
-        }
-    } 
 }

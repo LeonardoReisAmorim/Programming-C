@@ -5,3 +5,5 @@ typedef struct Disciplinas
 }Disciplinas;
 
 int inserirDisciplina (Disciplinas disciplinas[], int qtd_discip, Professores professores[], int qtd_prof);
+void listarDisciplinas(Disciplinas Disciplinas[], int qtd_discip);
+int excluirDisciplina (Disciplinas disciplinas[], int qtd_discip);
