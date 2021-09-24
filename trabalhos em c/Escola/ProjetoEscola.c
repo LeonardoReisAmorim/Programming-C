@@ -166,7 +166,10 @@ int main()
                         /* code */
                         break;
                     case 5:
-                        /* code */
+                        if(qtd_aluno==0){
+                            qtd_aluno=-1;
+                        }
+                        listar_por_sexo(alunos, qtd_aluno);
                         break;
                     case 6:
                         /* code */
@@ -175,7 +178,10 @@ int main()
                         /* code */
                         break;
                     case 8:
-                        /* code */
+                        if(qtd_prof==0){
+                            qtd_prof=-1;
+                        }
+                        listar_por_sexo_prof(professores, qtd_prof);
                         break;
                     case 9:
                         /* code */
