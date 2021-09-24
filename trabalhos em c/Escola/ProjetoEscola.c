@@ -193,7 +193,7 @@ int main()
                         /* code */
                         break;
                     case 12:
-                        /* code */
+                        listar_aluno_busca(alunos, qtd_aluno);
                         break;
                     case 13:
                         /* code */
