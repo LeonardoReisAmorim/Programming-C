@@ -70,7 +70,6 @@ void listarDisciplinas(Disciplinas disciplinas[], int qtd_discip){
 
 int excluirDisciplina (Disciplinas disciplinas[], int qtd_discip){
 
-    
     int i, codigo, posicao = -1;
 
     printf("\n------------ Exclusão de disciplina ------------\n");
@@ -90,7 +89,41 @@ int excluirDisciplina (Disciplinas disciplinas[], int qtd_discip){
         for(i = 0; i < qtd_discip; i++){
         disciplinas[i] = disciplinas[i + 1];
         }
-        //disciplinas = realloc(disciplinas, --qtd_discip * sizeof(Disciplinas));
         return sucesso;
     }
+}
+
+int inserirAluno_disciplina(Disciplinas disciplinas[], int qtd_discip, Alunos alunos[], int qtd_alunos){
+    
+    int i, j, matricula, cod;
+
+    printf("\n------- Inserção de alunos nas disciplinas ------\n");
+    printf("\nInforme a matrícula do aluno:");
+    scanf("%d", &matricula);
+
+    // verificar se matrícula já está cadastrada.
+
+    printf("\nInforme o codigo da disciplina:");
+    scanf("%d", &cod);
+
+    for(i = 0; i < qtd_discip; i++){
+        if(cod == disciplinas[i].codigo){
+            disciplinas[i].id_aluno[disciplinas[i].qtd_alunos_disc] = matricula;
+            disciplinas[i].qtd_alunos_disc++;
+            return sucesso;
+
+            //relatório disciplina
+            printf("\n");
+            printf("Codigo .....:  %d\n", disciplinas[i].codigo);
+            printf("Nome .....:  %s\n", disciplinas[i].nome);
+            printf("Semestre .....:  %d\n", disciplinas[i].semestre);
+            printf("ID do professor.....:  %d\n", disciplinas[i].id_professor);
+            printf("Alunos na disciplina:\n");
+            for(j=0; j < disciplinas[i].qtd_alunos_disc; j++){
+                printf("%d: %d\n", j+1, disciplinas[i].id_aluno[j]);
+            }
+            printf("Quantidade de alunos matriculados: %d\n", disciplinas[i].qtd_alunos_disc);
+        }
+    }
+    return erro_cod_disciplina;
 }

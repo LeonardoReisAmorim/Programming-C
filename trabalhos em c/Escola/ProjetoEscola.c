@@ -135,7 +135,15 @@ int main()
                 break;
             case 4:
                 printf("Inserir aluno em uma disciplina\n");
-                /**/
+                retorno = inserirAluno_disciplina(disciplinas, qtd_disciplinas, alunos, qtd_aluno);
+                if(retorno == 1)
+                {
+                    printf("\nCadastro realizado com sucesso!\n");
+                }
+                else if(retorno == 6)
+                {
+                    printf("\nO código da disciplina informado está incorreto.\n");
+                }
                 break;
             case 5:
                 printf("Excluir aluno de uma disciplina\n");
