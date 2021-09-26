@@ -86,7 +86,7 @@ int excluirDisciplina (Disciplinas disciplinas[], int qtd_discip){
         return 0;
     }
     else{
-        for(i = 0; i < qtd_discip; i++){
+        for(i = posicao; i < qtd_discip; i++){
         disciplinas[i] = disciplinas[i + 1];
         }
         return sucesso;
@@ -126,4 +126,59 @@ int inserirAluno_disciplina(Disciplinas disciplinas[], int qtd_discip, Alunos al
         }
     }
     return erro_cod_disciplina;
+}
+
+int excluirAluno_disciplina(Disciplinas disciplinas[], int qtd_discip, Alunos alunos[], int qtd_alunos){
+
+    int i, j, matricula, cod, posicao1 = -1, posicao2 = -1;
+
+    printf("\nInforme a matricula do aluno que deseja excluir da disciplina: ");
+    scanf("%d", &matricula);
+
+    printf("\nInforme o codigo da disciplina: ");
+    scanf("%d", &cod);
+
+    for(i = 0; i < qtd_discip; i++){
+        if(cod == disciplinas[i].codigo){
+            posicao1 = i;
+            for(j = 0;  j < disciplinas[posicao1].qtd_alunos_disc; j++){
+                if(matricula == disciplinas[posicao1].id_aluno[j]){
+                    posicao2 = j;
+                }
+            }
+         }
+    }
+
+    if(posicao1 == -1){
+        return 6;
+    }
+    if(posicao2 == -1){
+        return 2;
+    }else{
+        for(i = posicao2; i < disciplinas[posicao1].qtd_alunos_disc; i++){
+        disciplinas[posicao1].id_aluno[i] = disciplinas[posicao1].id_aluno[i + 1];
+        disciplinas[posicao1].qtd_alunos_disc--;
+        }
+        return sucesso;
+    }
+}
+
+void listarDisciplinas_completo(Disciplinas disciplinas[], int qtd_disciplinas, Alunos alunos[], int qtd_aluno){
+    
+    int i, j;
+
+    printf("\n------- Listagem de disciplinas com dados e alunos matriculados -------\n");
+    for(i = 0; i < qtd_disciplinas; i++)
+    {
+        printf("\n");
+        printf("Codigo .....:  %d\n", disciplinas[i].codigo);
+        printf("Nome .....:  %s\n", disciplinas[i].nome);
+        printf("Semestre .....:  %d\n", disciplinas[i].semestre);
+        printf("ID do professor.....:  %d\n", disciplinas[i].id_professor);
+        printf("Alunos na disciplina:\n");
+        for(j=0; j < disciplinas[i].qtd_alunos_disc; j++){
+            printf("%d: %d\n", j+1, disciplinas[i].id_aluno[j]);
+        }
+        printf("\n-----------------------------------------------------------------------\n");
+    }
 }

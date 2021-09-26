@@ -10,3 +10,5 @@ int inserirDisciplina (Disciplinas disciplinas[], int qtd_discip, Professores pr
 void listarDisciplinas(Disciplinas Disciplinas[], int qtd_discip);
 int excluirDisciplina (Disciplinas disciplinas[], int qtd_discip);
 int inserirAluno_disciplina(Disciplinas disciplinas[], int qtd_discip, Alunos alunos[], int qtd_alunos);
+int excluirAluno_disciplina(Disciplinas disciplinas[], int qtd_discip, Alunos alunos[], int qtd_alunos);
+void listarDisciplinas_completo(Disciplinas disciplinas[], int qtd_disciplinas, Alunos alunos[], int qtd_aluno);

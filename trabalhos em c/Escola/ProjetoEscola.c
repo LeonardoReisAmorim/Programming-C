@@ -147,7 +147,18 @@ int main()
                 break;
             case 5:
                 printf("Excluir aluno de uma disciplina\n");
-                /**/
+                retorno = excluirAluno_disciplina(disciplinas, qtd_disciplinas, alunos, qtd_aluno);
+                //condições de retorno
+                if(retorno == 1)
+                {
+                    printf("\nExclusao realizada com sucesso!\n");
+                }
+                else if(retorno == 6)
+                {
+                    printf("\nO código da disciplina informado está incorreto.\n");
+                }else if(retorno == 2){
+                    printf("\nA matricula informada está incorreta.\n");                
+                }
                 break;
             case 6:
                 opcao_relatorios=menu_relatorios();
@@ -171,7 +182,10 @@ int main()
                         listarDisciplinas(disciplinas, qtd_disciplinas);
                         break;
                     case 4:
-                        /* code */
+                        if(qtd_disciplinas==0){
+                                qtd_disciplinas=-1;
+                        }
+                        listarDisciplinas_completo(disciplinas, qtd_disciplinas, alunos, qtd_aluno);
                         break;
                     case 5:
                         if(qtd_aluno==0){

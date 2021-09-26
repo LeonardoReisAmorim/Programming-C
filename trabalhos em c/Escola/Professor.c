@@ -97,7 +97,6 @@ int excluirProfessor (Professores professores[], int qtd_professores){
         for(i = posicao; i < qtd_professores; i++){
         professores[i] = professores[i + 1];
         }
-        //professores = realloc(professores, --qtd_professores * sizeof(Professores));
         return 1;
     }
 }
