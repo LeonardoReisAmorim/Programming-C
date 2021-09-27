@@ -24,7 +24,7 @@ int main()
     Professores professores[TAM];
     Disciplinas disciplinas[TAM];
 
-    int opcao_principal, opcao_cadastro, opcao_exclusao, opcao_alteracao, opcao_relatorios, qtd_aluno = 0, qtd_prof = 0, qtd_disciplinas = 0, sair = 0, retorno=0;
+    int opcao_principal, opcao_cadastro, opcao_exclusao, opcao_alteracao, opcao_relatorios, qtd_aluno = 0, qtd_prof = 0, qtd_disciplinas = 0, sair = 0, retorno=0,listagem=0;
     
     while (!sair){
     opcao_principal=menu_principal();
@@ -215,7 +215,17 @@ int main()
                         /* code */
                         break;
                     case 12:
-                        listar_aluno_busca(alunos, qtd_aluno);
+                        printf("\nescolha:\n1 -   Professor\n2 - Aluno\n");
+                        scanf("%d",&listagem);
+                        if(listagem==1){
+                            listar_professor_busca(professores,qtd_prof);
+                        }else if(listagem==2){
+                            listar_aluno_busca(alunos, qtd_aluno);
+                        }else{
+                            printf("\nopcao invalida");
+                        }
+                        
+                        
                         break;
                     case 13:
                         /* code */

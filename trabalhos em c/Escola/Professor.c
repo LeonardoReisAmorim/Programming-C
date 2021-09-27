@@ -153,3 +153,32 @@ void listar_por_sexo_prof(Professores professor[], int qtd_prof){
         }
     } 
 }
+
+void listar_professor_busca(Professores professor[], int qtd_prof){
+    char nome[100];
+    int i=0,resultado,achei=0;;
+    setbuf(stdin,0);
+    printf("\n------------ Buscar Professor ------------\n");
+    
+    printf("\nDigite o nome do professor que deseja pesquisar....:  ");
+	fgets(nome, 101, stdin);
+    size_t ln = strlen(nome) - 1; 
+    if (nome[ln] == '\n'){
+        nome[ln] = '\0';
+    }
+	for(i=0;i<qtd_prof;i++){
+		resultado=strcmp(professor[i].nome,nome);
+		if(resultado==0){
+			printf("\n======================================LISTA DE PROFESSORES COM O NOME: %s =================================\n",nome);
+            printf("Matricula .....:  %d\n", professor[i].matricula);
+            printf("Nome .....:  %s\n", professor[i].nome);
+            printf("Sexo .....:  %c\n", professor[i].sexo);
+            printf("Data de nascimento .....:  %d/%d/%d\n", professor[i].data_nasc.dia, professor[i].data_nasc.mes, professor[i].data_nasc.ano);
+            printf("CPF .....:  %s\n", professor[i].cpf);
+			achei=1;
+		}
+	}
+	if(achei==0){
+		printf("\nprofessor nao encontrado\n");
+	}
+}
