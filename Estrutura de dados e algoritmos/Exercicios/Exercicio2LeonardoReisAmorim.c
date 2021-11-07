@@ -15,11 +15,10 @@ typedef struct tipo Papel;
 
 // cria o inicio da lista
 Papel *inicio=NULL;
-
+int id=0;
 //Cadastrar V, Comprar F, Listar V, Excluir F
 
-Papel* Cadastrar(Papel* l, float preco, int qtd, char nome[])
-{
+Papel* Cadastrar(Papel* l, float preco, int qtd, char nome[]){
 	Papel* novo= malloc(sizeof(Papel));
 	Papel* aux;
 	if(novo){
@@ -44,8 +43,7 @@ Papel* Cadastrar(Papel* l, float preco, int qtd, char nome[])
 	return l;
 }
 
-void consultar_acoes(Papel* inicio)
-{
+void consultar_acoes(Papel* inicio){
 	Papel *referencia;
 	for(referencia= inicio;referencia!= NULL; referencia=referencia->prox){
 		printf("\nNome do papel....:%s\t", referencia->Nome);
@@ -55,13 +53,14 @@ void consultar_acoes(Papel* inicio)
 }
 
 float Comprar(Papel* p, char nome[]){
-	int flag=0;
-	float media =0;
+	int flag=0,flag2=0;
+	float media=0;
 	Papel *referencia;
 
 	for(referencia= p;referencia!= NULL; referencia=referencia->prox){
 		if(strcmp(referencia->Nome, nome)==0){
 			printf("\nOKKOK\n");
+			flag2=1;
 		}else{
 			flag=1;
 		}
@@ -69,7 +68,7 @@ float Comprar(Papel* p, char nome[]){
 		//printf("\nPreco do papel....:%.2f\tQuantidade do papel....:%d\n", referencia->Preco,referencia->Qtd);
 		//printf("\n---------------------------------------------------------------------------------\n");
 	}
-	if(flag){
+	if(flag && !flag2){
 		media=-1;
 		return media;
 	}
@@ -174,26 +173,10 @@ int main() {
 			fgets(nome,21,stdin);
 			media = Comprar(lista, nome);
 			if(media==-1){
-				printf("Nao existe o papel que foi pesquisado");
+				printf("\nNao existe o papel que foi pesquisado\n");
 			}else{
-				printf("\nCOMPRA E VENDA       ......: media: %.2f\n",media);
+				printf("\nmedia: %.2f\n",media);
 			}
-			
-			/*switch (opcaoDois){
-			case 1:
-				printf("\nCOMPRA\n");
-				break;
-			case 3:
-				printf("\nCOMPRA E VENDA\n");
-				break;
-			case 4:
-				opcaoDois=0;
-			break;
-			default:
-				printf("\nopcao invalida\n");
-				break;
-			}
-			*/
 		break;
 		case 4:
 			printf("saindo..\n");
