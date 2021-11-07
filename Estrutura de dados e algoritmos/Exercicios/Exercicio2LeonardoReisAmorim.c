@@ -4,11 +4,11 @@
 
 struct tipo
 {
+	int id;
 	char Nome[21];
 	float Preco;
 	int Qtd;
 	struct tipo *prox;
-
 };
 
 typedef struct tipo Papel;
@@ -53,7 +53,53 @@ void consultar_acoes(Papel* inicio)
 		printf("\n---------------------------------------------------------------------------------\n");
 	}
 }
+
+float Comprar(Papel* p, char nome[]){
+	int flag=0;
+	float media =0;
+	Papel *referencia;
+
+	for(referencia= p;referencia!= NULL; referencia=referencia->prox){
+		if(strcmp(referencia->Nome, nome)==0){
+			printf("\nOKKOK\n");
+		}else{
+			flag=1;
+		}
+		//printf("\nNome do papel....:%s\t", referencia->Nome);
+		//printf("\nPreco do papel....:%.2f\tQuantidade do papel....:%d\n", referencia->Preco,referencia->Qtd);
+		//printf("\n---------------------------------------------------------------------------------\n");
+	}
+	if(flag){
+		media=-1;
+		return media;
+	}
+	return media;
+}
+
 /*
+Papel *Excluir(int dado, Papel *ptr)
+{
+	Papel* busca; 
+	Papel* anterior;
+	anterior = NULL;
+	busca = ptr;
+	while (busca != NULL) {
+		if (busca->info == dado) {
+			if (anterior != NULL){
+				anterior->prox = busca -> prox;
+				return ptr;
+			}else{
+				ptr = busca-> prox;
+				return ptr;
+			}
+			free(busca);
+			break;	
+		}
+		anterior = busca;
+		busca = busca->prox;
+	}
+  return NULL;
+}
 Paciente *retiraInicio(Paciente *LISTA)
 {
 	if(LISTA->prox == NULL){
@@ -95,39 +141,17 @@ Paciente *BuscaDado(int dado, Paciente *ptr)
   return NULL;
 }
 
-Paciente *RemoveDado(int dado, Paciente *ptr)
-{
-	Paciente* busca; 
-	Paciente* anterior;
-	anterior = NULL;
-	busca = ptr;
-	while (busca != NULL) {
-		if (busca->info == dado) {
-			if (anterior != NULL){
-				anterior->prox = busca -> prox;
-				return ptr;
-			}else{
-				ptr = busca-> prox;
-				return ptr;
-			}
-			free(busca);
-			break;	
-		}
-		anterior = busca;
-		busca = busca->prox;
-	}
-  return NULL;
-}
+
 */
 int main() {
 	int opcao=-1, qtd=0,opcaoDois;
-	float Preco=0;
+	float Preco=0,media=0;
 	char nome[21];
 	Papel *lista;
 	lista = NULL;
 	while (opcao!=0){
 		opcaoDois=-1;
-		printf("\ndigite a opcao:\n1 - Cadastrar Papel\n2 - consultar acoes\n3 - sair\n");
+		printf("\ndigite a opcao:\n1 - Cadastrar Papel para venda\n2 - consultar acoes\n3 - Comprar e vender\n4 - Sair\n");
 		scanf("%d",&opcao);
 		printf("\n---------------------------------------------------------------------------------\n");
 		switch (opcao){
@@ -140,29 +164,38 @@ int main() {
 			printf("\ndigite a quantidade do papel.....: \n");
 			scanf("%d",&qtd);
 			lista = Cadastrar(lista, Preco, qtd, nome);
-			while (opcaoDois!=0){
-				printf("\nescolha a opcao:\n1 - Compra\n2 - Venda\n3 - Sair");
-				scanf("%d",&opcaoDois);
-				switch (opcaoDois){
-				case 1:
-					printf("COMPRA");
-					break;
-				case 2:
-					printf("VENDA");
-					break;
-				case 3:
-					opcaoDois=0;
-					break;
-				default:
-					printf("\nopcao invalida\n");
-					break;
-				}
-			}
 			break;
 		case 2:
 			consultar_acoes(lista);
 		break;
 		case 3:
+			printf("\ndigite o nome da acao que deseja comprar.........: ");
+			getchar();
+			fgets(nome,21,stdin);
+			media = Comprar(lista, nome);
+			if(media==-1){
+				printf("Nao existe o papel que foi pesquisado");
+			}else{
+				printf("\nCOMPRA E VENDA       ......: media: %.2f\n",media);
+			}
+			
+			/*switch (opcaoDois){
+			case 1:
+				printf("\nCOMPRA\n");
+				break;
+			case 3:
+				printf("\nCOMPRA E VENDA\n");
+				break;
+			case 4:
+				opcaoDois=0;
+			break;
+			default:
+				printf("\nopcao invalida\n");
+				break;
+			}
+			*/
+		break;
+		case 4:
 			printf("saindo..\n");
 			opcao=0;
 		break;
@@ -170,7 +203,11 @@ int main() {
 			printf("\nopcao invalida\n");
 			break;
 		}
-	/*if(opcao==1){
+	}
+    return 0;
+}
+
+/*if(opcao==1){
 		printf("\ndepois da exclusao no fim.....: \n");
 		lista= retiraFim(lista);
 		consultar_lista(lista);
@@ -208,6 +245,3 @@ int main() {
 		else 
 		printf("saindo..\n");
 	}*/
-	}
-    return 0;
-}
