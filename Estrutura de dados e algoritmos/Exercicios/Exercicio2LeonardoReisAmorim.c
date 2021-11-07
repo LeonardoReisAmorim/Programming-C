@@ -1,5 +1,6 @@
 #include <stdio.h>
 #include <stdlib.h>
+#include <string.h>
 
 struct tipo
 {
@@ -17,7 +18,7 @@ Papel *inicio=NULL;
 
 //Cadastrar V, Comprar F, Listar V, Excluir F
 
-Papel* Cadastrar(Papel* l, int preco, int qtd, char nome[])
+Papel* Cadastrar(Papel* l, float preco, int qtd, char nome[])
 {
 	Papel* novo= malloc(sizeof(Papel));
 	Papel* aux;
@@ -47,11 +48,10 @@ void consultar_acoes(Papel* inicio)
 {
 	Papel *referencia;
 	for(referencia= inicio;referencia!= NULL; referencia=referencia->prox){
-		printf("\n%s\t\n", referencia->Nome);
-		printf("\n%f\t\n", referencia->Preco);
-		printf("\n%d\t\n", referencia->Qtd);
+		printf("\nNome do papel....:%s\t", referencia->Nome);
+		printf("\nPreco do papel....:%.2f\tQuantidade do papel....:%d\n", referencia->Preco,referencia->Qtd);
+		printf("\n---------------------------------------------------------------------------------\n");
 	}
-	printf("\n");
 }
 /*
 Paciente *retiraInicio(Paciente *LISTA)
@@ -120,33 +120,55 @@ Paciente *RemoveDado(int dado, Paciente *ptr)
 }
 */
 int main() {
-	int opcao=0, qtd=0;
+	int opcao=-1, qtd=0,opcaoDois;
 	float Preco=0;
 	char nome[21];
 	Papel *lista;
 	lista = NULL;
 	while (opcao!=0){
-		printf("\ndigite a opcao:\n1 - inserir elemento na lista\n2 - consultar ações\n3 - excluir um elemento pesquisado\n4 - buscar um elemento na lista\n1 -excluir no fim\n0 = sair\n6 - consultar lista\n");
+		opcaoDois=-1;
+		printf("\ndigite a opcao:\n1 - Cadastrar Papel\n2 - consultar acoes\n3 - sair\n");
 		scanf("%d",&opcao);
+		printf("\n---------------------------------------------------------------------------------\n");
 		switch (opcao){
 		case 1:
-			printf("\ndigite o nome da ação......:\n");
+			printf("\ndigite o nome do papel......:\n");
+			getchar();
 			fgets(nome, 21, stdin);
-			printf("\ndigite o preço da acão.....: \n");
+			printf("\ndigite o preco do papel.....: \n");
 			scanf("%f",&Preco);
-			printf("\ndigite a quantidade da acão.....: \n");
+			printf("\ndigite a quantidade do papel.....: \n");
 			scanf("%d",&qtd);
 			lista = Cadastrar(lista, Preco, qtd, nome);
+			while (opcaoDois!=0){
+				printf("\nescolha a opcao:\n1 - Compra\n2 - Venda\n3 - Sair");
+				scanf("%d",&opcaoDois);
+				switch (opcaoDois){
+				case 1:
+					printf("COMPRA");
+					break;
+				case 2:
+					printf("VENDA");
+					break;
+				case 3:
+					opcaoDois=0;
+					break;
+				default:
+					printf("\nopcao invalida\n");
+					break;
+				}
+			}
 			break;
 		case 2:
-			printf("\n.........Papeis........:\n");
 			consultar_acoes(lista);
 		break;
+		case 3:
+			printf("saindo..\n");
+			opcao=0;
+		break;
 		default:
+			printf("\nopcao invalida\n");
 			break;
-		}
-		if(opcao==1){
-			
 		}
 	/*if(opcao==1){
 		printf("\ndepois da exclusao no fim.....: \n");
