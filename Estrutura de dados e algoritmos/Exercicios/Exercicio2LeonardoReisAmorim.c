@@ -3,31 +3,37 @@
 
 struct tipo
 {
-	int info;
+	char Nome[21];
+	float Preco;
+	int Qtd;
 	struct tipo *prox;
 
 };
 
-typedef struct tipo Paciente;
+typedef struct tipo Papel;
 
 // cria o inicio da lista
-Paciente *inicio=NULL;
+Papel *inicio=NULL;
 
-Paciente* inserir_lista(Paciente* l, int i)
+//Cadastrar V, Comprar F, Listar V, Excluir F
+
+Papel* Cadastrar(Papel* l, int preco, int qtd, char nome[])
 {
-	Paciente* novo= malloc(sizeof(Paciente));
-	Paciente* aux;
+	Papel* novo= malloc(sizeof(Papel));
+	Papel* aux;
 	if(novo){
-		novo->info = i;
+		novo->Preco = preco;
+		novo->Qtd = qtd;
+		strcpy(novo->Nome,nome);
 		if(l == NULL){
 			novo->prox = NULL;
 			l = novo;
-		}else if(novo->info < (l)->info){
+		}else if(novo->Preco < (l)->Preco){
 			novo->prox = l;
 			l = novo; 
 		}else{
 			aux = l;
-			while (aux->prox && novo->info > aux->prox->info){
+			while (aux->prox && novo->Preco > aux->prox->Preco){
 				aux = aux->prox;
 			}
 			novo->prox = aux->prox;
@@ -37,15 +43,17 @@ Paciente* inserir_lista(Paciente* l, int i)
 	return l;
 }
 
-void consultar_lista(Paciente* inicio)
+void consultar_acoes(Papel* inicio)
 {
-	Paciente *referencia;
+	Papel *referencia;
 	for(referencia= inicio;referencia!= NULL; referencia=referencia->prox){
-		printf("%d\t", referencia->info);
+		printf("\n%s\t\n", referencia->Nome);
+		printf("\n%f\t\n", referencia->Preco);
+		printf("\n%d\t\n", referencia->Qtd);
 	}
 	printf("\n");
 }
-
+/*
 Paciente *retiraInicio(Paciente *LISTA)
 {
 	if(LISTA->prox == NULL){
@@ -110,16 +118,37 @@ Paciente *RemoveDado(int dado, Paciente *ptr)
 	}
   return NULL;
 }
-
+*/
 int main() {
-	int opcao=0,elemento=0;
-	Paciente *lista;
+	int opcao=0, qtd=0;
+	float Preco=0;
+	char nome[21];
+	Papel *lista;
 	lista = NULL;
-	while (opcao!=8)
-	{
-	printf("\ndigite a opcao:\n1 -excluir no fim\n2 - excluir no inicio\n3 - excluir um elemento pesquisado\n4 - buscar um elemento na lista\n5 - inserir elemento na lista\n8 = sair\n6 - consultar lista\n");
-	scanf("%d",&opcao);
-	if(opcao==1){
+	while (opcao!=0){
+		printf("\ndigite a opcao:\n1 - inserir elemento na lista\n2 - consultar ações\n3 - excluir um elemento pesquisado\n4 - buscar um elemento na lista\n1 -excluir no fim\n0 = sair\n6 - consultar lista\n");
+		scanf("%d",&opcao);
+		switch (opcao){
+		case 1:
+			printf("\ndigite o nome da ação......:\n");
+			fgets(nome, 21, stdin);
+			printf("\ndigite o preço da acão.....: \n");
+			scanf("%f",&Preco);
+			printf("\ndigite a quantidade da acão.....: \n");
+			scanf("%d",&qtd);
+			lista = Cadastrar(lista, Preco, qtd, nome);
+			break;
+		case 2:
+			printf("\n.........Papeis........:\n");
+			consultar_acoes(lista);
+		break;
+		default:
+			break;
+		}
+		if(opcao==1){
+			
+		}
+	/*if(opcao==1){
 		printf("\ndepois da exclusao no fim.....: \n");
 		lista= retiraFim(lista);
 		consultar_lista(lista);
@@ -146,11 +175,8 @@ int main() {
 		}else{
 			printf("contem o elemento pesquisado ");
 		}
-	}else if(opcao==5){
-		printf("\ndigite o elemento a ser incluido.....: \n");
-		scanf("%d",&elemento);
-		lista = inserir_lista(lista, elemento);
-	}else if(opcao==6){
+	}else */
+	/*}else if(opcao==6){
 		printf("\nLista.................:\n");
 		consultar_lista(lista);
 	}else{
@@ -159,7 +185,7 @@ int main() {
 	
 		else 
 		printf("saindo..\n");
-	}
+	}*/
 	}
     return 0;
 }
