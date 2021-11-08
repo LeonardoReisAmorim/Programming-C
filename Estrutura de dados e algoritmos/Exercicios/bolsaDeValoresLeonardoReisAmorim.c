@@ -62,18 +62,18 @@ int Comprar(Papel* p, char nome[]){
 			printf("\nPreco da venda....:%.2f                        Quantidade da venda....:%d\n", referencia->Preco,referencia->Qtd);
 			printf("\nqual preco que deseja comprar....: ");
 			scanf("%f",&preco);
-			if(preco <= referencia->Preco){
+			if(preco >= referencia->Preco){
 				printf("\nQuantas acoes(quantidade) da %sVoce quer comprar......: ",referencia->Nome);
 				scanf("%d",&qtd);
-				if(qtd <= referencia->Qtd){
+				if(referencia->Qtd <= qtd){
 					printf("\nCompra\nPreco....:%.2f                        Quantidade....:%d\n", preco, qtd);
-					printf("\nVenda\nPreco....:%.2f                         Quantidade....:%d\n", referencia->Preco,referencia->Qtd);
+					printf("\nVenda\nPreco.....:%.2f                         Quantidade....:%d\n", referencia->Preco,referencia->Qtd);
 					media = (preco+referencia->Preco)/2;
 					printf("\nvalor da transacao....: %.2f",media);
-					referencia->Qtd -= qtd;
+					referencia->Qtd = qtd - referencia->Qtd;
 					//se a quantidade for 0, exclua ela.
 				}else{
-					printf("\nNao foi possivel realizar a compra, quantidade da compra maior que a quantidade da venda\n");	
+					printf("\nNao foi possivel realizar a compra, quantidade da compra menor que a quantidade da venda\n");	
 				}
 			}else{
 				printf("\nNao foi possivel realizar a compra, preco da compra menor do que o preco da venda\n");
