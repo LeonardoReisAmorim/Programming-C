@@ -16,7 +16,7 @@ typedef struct tipo Papel;
 // cria o inicio da lista
 Papel *inicio=NULL;
 int id=0;
-//Cadastrar V, Comprar F, Listar V, Excluir F
+//Cadastrar V, Comprar V, Listar V, Excluir F
 
 Papel* Cadastrar(Papel* l, float preco, int qtd, char nome[]){
 	Papel* novo= malloc(sizeof(Papel));
