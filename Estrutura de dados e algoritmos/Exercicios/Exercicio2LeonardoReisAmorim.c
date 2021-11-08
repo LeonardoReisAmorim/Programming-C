@@ -52,27 +52,43 @@ void consultar_acoes(Papel* inicio){
 	}
 }
 
-float Comprar(Papel* p, char nome[]){
-	int flag=0,flag2=0;
-	float media=0;
+int Comprar(Papel* p, char nome[]){
+	int flag=0,flag2=0,qtd=0;
+	float media=0,preco=0;
 	Papel *referencia;
-
+	//o valor da transação seria a *média entre os dois valores*
 	for(referencia= p;referencia!= NULL; referencia=referencia->prox){
 		if(strcmp(referencia->Nome, nome)==0){
-			printf("\nOKKOK\n");
+			printf("\nPreco da venda....:%.2f                        Quantidade da venda....:%d\n", referencia->Preco,referencia->Qtd);
+			printf("\nqual preco que deseja comprar....: ");
+			scanf("%f",&preco);
+			if(preco <= referencia->Preco){
+				printf("\nQuantas acoes(quantidade) da %sVoce quer comprar......: ",referencia->Nome);
+				scanf("%d",&qtd);
+				if(qtd <= referencia->Qtd){
+					printf("\nCompra\nPreco....:%.2f                        Quantidade....:%d\n", preco, qtd);
+					printf("\nVenda\nPreco....:%.2f                         Quantidade....:%d\n", referencia->Preco,referencia->Qtd);
+					media = (preco+referencia->Preco)/2;
+					printf("\nvalor da transacao....: %.2f",media);
+					referencia->Qtd -= qtd;
+					//se a quantidade for 0, exclua ela.
+				}else{
+					printf("\nNao foi possivel realizar a compra, quantidade da compra maior que a quantidade da venda\n");	
+				}
+			}else{
+				printf("\nNao foi possivel realizar a compra, preco da compra menor do que o preco da venda\n");
+			}
 			flag2=1;
 		}else{
 			flag=1;
 		}
-		//printf("\nNome do papel....:%s\t", referencia->Nome);
-		//printf("\nPreco do papel....:%.2f\tQuantidade do papel....:%d\n", referencia->Preco,referencia->Qtd);
-		//printf("\n---------------------------------------------------------------------------------\n");
+		printf("\n---------------------------------------------------------------------------------\n");
 	}
 	if(flag && !flag2){
 		media=-1;
-		return media;
+		return 0;
 	}
-	return media;
+	return 1;
 }
 
 /*
@@ -143,8 +159,8 @@ Paciente *BuscaDado(int dado, Paciente *ptr)
 
 */
 int main() {
-	int opcao=-1, qtd=0,opcaoDois;
-	float Preco=0,media=0;
+	int opcao=-1, qtd=0,opcaoDois,retorn=0;
+	float Preco=0;
 	char nome[21];
 	Papel *lista;
 	lista = NULL;
@@ -171,11 +187,9 @@ int main() {
 			printf("\ndigite o nome da acao que deseja comprar.........: ");
 			getchar();
 			fgets(nome,21,stdin);
-			media = Comprar(lista, nome);
-			if(media==-1){
+			retorn = Comprar(lista, nome);
+			if(!retorn){
 				printf("\nNao existe o papel que foi pesquisado\n");
-			}else{
-				printf("\nmedia: %.2f\n",media);
 			}
 		break;
 		case 4:
