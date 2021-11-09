@@ -18,6 +18,11 @@ Papel *inicio=NULL;
 int id=0;
 //Cadastrar V, Comprar V, Listar V, Excluir F
 
+int criarId(){
+	id++;
+	return id;
+}
+
 Papel* Cadastrar(Papel* l, float preco, int qtd, char nome[]){
 	Papel* novo= malloc(sizeof(Papel));
 	Papel* aux;
@@ -28,16 +33,19 @@ Papel* Cadastrar(Papel* l, float preco, int qtd, char nome[]){
 		if(l == NULL){
 			novo->prox = NULL;
 			l = novo;
-		}else if(novo->Preco < (l)->Preco){
+			novo->id = criarId();
+		}else if(novo->Preco > (l)->Preco){
 			novo->prox = l;
 			l = novo; 
+			novo->id = criarId();
 		}else{
 			aux = l;
-			while (aux->prox && novo->Preco > aux->prox->Preco){
+			while (aux->prox && novo->Preco < aux->prox->Preco){
 				aux = aux->prox;
 			}
 			novo->prox = aux->prox;
 			aux->prox = novo;
+			novo->id = criarId();
 		}
 	}
 	return l;
@@ -45,20 +53,49 @@ Papel* Cadastrar(Papel* l, float preco, int qtd, char nome[]){
 
 void consultar_acoes(Papel* inicio){
 	Papel *referencia;
-	for(referencia= inicio;referencia!= NULL; referencia=referencia->prox){
-		printf("\nNome do papel....:%s\t", referencia->Nome);
-		printf("\nPreco do papel....:%.2f\tQuantidade do papel....:%d\n", referencia->Preco,referencia->Qtd);
-		printf("\n---------------------------------------------------------------------------------\n");
+	if(inicio==NULL){
+		printf("\nNao existem acoes disponiveis no momento\n");
+	}else{
+		for(referencia= inicio;referencia!= NULL; referencia=referencia->prox){
+			printf("\nNome do papel....:\t%s", referencia->Nome);
+			printf("\nPreco do papel....:%.2f\t Quantidade do papel....:%d\n", referencia->Preco,referencia->Qtd);
+			printf("\n---------------------------------------------------------------------------------\n");
+		}
 	}
+	
+}
+
+void *Excluir(int id, Papel *ptr){
+	Papel* busca; 
+	Papel* anterior;
+	anterior = NULL;
+	busca = ptr;
+	while (busca != NULL) {
+		if (busca->id == id) {
+			if (anterior != NULL){
+				anterior->prox = busca -> prox;
+				//return ptr;
+			}else{
+				ptr = busca-> prox;
+				//return ptr;
+			}
+			free(busca);
+			break;	
+		}
+		anterior = busca;
+		busca = busca->prox;
+	}
+  //return NULL;
 }
 
 int Comprar(Papel* p, char nome[]){
-	int flag=0,flag2=0,qtd=0;
-	float media=0,preco=0;
+	int flag=0,flag2=0,qtd=0,i;
+	float media=0,preco=0,precoAntes=0;
 	Papel *referencia;
 	//o valor da transação seria a *média entre os dois valores*
 	for(referencia= p;referencia!= NULL; referencia=referencia->prox){
 		if(strcmp(referencia->Nome, nome)==0){
+			precoAntes = referencia->Preco;
 			printf("\nPreco da venda....:%.2f                        Quantidade da venda....:%d\n", referencia->Preco,referencia->Qtd);
 			printf("\nqual preco que deseja comprar....: ");
 			scanf("%f",&preco);
@@ -69,9 +106,16 @@ int Comprar(Papel* p, char nome[]){
 					printf("\nCompra\nPreco....:%.2f                        Quantidade....:%d\n", preco, qtd);
 					printf("\nVenda\nPreco.....:%.2f                         Quantidade....:%d\n", referencia->Preco,referencia->Qtd);
 					media = (preco+referencia->Preco)/2;
-					printf("\nvalor da transacao....: %.2f",media);
+					printf("\nvalor da transacao....: %.2f\n",media);
 					referencia->Qtd = qtd - referencia->Qtd;
-					//se a quantidade for 0, exclua ela.
+					i++;
+					//se a quantidade for <0, exclua ela.
+					if(referencia->Qtd <= 0){
+						//printf("\nid: %d",referencia->id);
+						//Excluir(referencia->id, referencia);
+					}
+						
+					
 				}else{
 					printf("\nNao foi possivel realizar a compra, quantidade da compra menor que a quantidade da venda\n");	
 				}
@@ -81,6 +125,9 @@ int Comprar(Papel* p, char nome[]){
 			flag2=1;
 		}else{
 			flag=1;
+		}
+		if(i>=2){
+			break;
 		}
 		printf("\n---------------------------------------------------------------------------------\n");
 	}
@@ -92,29 +139,6 @@ int Comprar(Papel* p, char nome[]){
 }
 
 /*
-Papel *Excluir(int dado, Papel *ptr)
-{
-	Papel* busca; 
-	Papel* anterior;
-	anterior = NULL;
-	busca = ptr;
-	while (busca != NULL) {
-		if (busca->info == dado) {
-			if (anterior != NULL){
-				anterior->prox = busca -> prox;
-				return ptr;
-			}else{
-				ptr = busca-> prox;
-				return ptr;
-			}
-			free(busca);
-			break;	
-		}
-		anterior = busca;
-		busca = busca->prox;
-	}
-  return NULL;
-}
 Paciente *retiraInicio(Paciente *LISTA)
 {
 	if(LISTA->prox == NULL){
