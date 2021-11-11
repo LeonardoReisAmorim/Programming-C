@@ -175,10 +175,9 @@ int Comprar(PapelC* inicioC,PapelV* inicioV, char nome[]){
 		for(referenciaC= inicioC;referenciaC!= NULL; referenciaC=referenciaC->prox){
 			idC = referenciaC->id;
 			if(!comparaNome(referenciaC->Nome,nome)){
-				idC = 0;
-				retorno=0;
+				idC=0;
 			}
-			if(idC && retorno){
+			if(idC){
 				j++;
 				printf("\nNome do papel da compra....:%s", referenciaC->Nome);
 				printf("\nPreco do papel da compra....:%.2f      Quantidade do papel da compra....:%d\t", referenciaC->Preco,referenciaC->Qtd);
@@ -186,26 +185,31 @@ int Comprar(PapelC* inicioC,PapelV* inicioV, char nome[]){
 				for(referenciaV= inicioV;referenciaV!=NULL; referenciaV=referenciaV->prox){
 					idV = referenciaV->id;
 					if(!comparaNome(referenciaV->Nome,nome)){
-						idV = 0;
-						retorno = 0;
+						idV=0;
 					}
-					if(idV && retorno){
+					if(idV){
 						if(comparaNome(referenciaC->Nome, referenciaV->Nome)){	
 							i++;
 							if(i==j){
+								//printf("ultimo preco da operacao por papel");
 								printf("\tPreco do papel da venda....:%.2f      Quantidade do papel da venda....:%d", referenciaV->Preco,referenciaV->Qtd);
 								printf("\n\n-----------------------------------------------------------------------------------------------------------------------------------------------------\n");
-							}	
+								//AQUI FAZER A PARTE DE COMPRA
+							}//else if(i<=j){
+								//printf("\tPreco do papel da venda....:%.2f      Quantidade do papel da venda....:%d", referenciaV->Preco,referenciaV->Qtd);
+								//printf("\n\n-----------------------------------------------------------------------------------------------------------------------------------------------------\n");
+							//}	
 						}
+					
 					}
 					
 				}
 				flag2=1;
 				i=0;
 			}
-			
+			printf("\n**************************************************************************************************************************************************************\n");
 		}
-		printf("\n**************************************************************************************************************************************************************\n");
+		
 	}
 	/*
 			j++; 
