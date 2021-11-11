@@ -80,8 +80,14 @@ PapelV* CadastrarVenda(PapelV* l, float preco, int qtd, char nome[]){
 	return l;
 }
 
-void consultar_acoes(PapelC* inicioC,PapelV* inicioV){
-	int i=0,j=0;
+int comparaNome(char nome1[], char nome2[]){
+	int ret=0;
+	ret = strcmp(nome1, nome2)==0 ? 1 : 0;
+	return ret;
+}
+
+/*
+int i=0,j=0;
 	PapelC *referenciaC;
 	PapelV *referenciaV;
 	if(!inicioC || !inicioV){
@@ -90,25 +96,48 @@ void consultar_acoes(PapelC* inicioC,PapelV* inicioV){
 		printf("\n**************************************************************************************************************************************************************\n");
 		//printf("\n=====================================     COMPRA     ==========================================\n");
 		for(referenciaC= inicioC;referenciaC!= NULL; referenciaC=referenciaC->prox){
-			j++;
+			j++; 
 			printf("\nNome do papel da compra....:%s", referenciaC->Nome);
-			printf("\nPreco do papel da compra....:%.2f      Quantidade do papel da compra....:%d", referenciaC->Preco,referenciaC->Qtd);
+			printf("\nPreco do papel da compra....:%.2f      Quantidade do papel da compra....:%d\t", referenciaC->Preco,referenciaC->Qtd);
+			printf("|");
 			for(referenciaV= inicioV;referenciaV!=NULL; referenciaV=referenciaV->prox){
-				i++;
-				//printf("\n\ni: %d",i);
-				if(i==j){
-					printf("\t\tNome do papel da venda....:%s\t", referenciaV->Nome);
-					printf("\n\t\t\t\t\t\t\t\t\t\t\tPreco do papel da venda....:%.2f      Quantidade do papel da venda....:%d", referenciaV->Preco,referenciaV->Qtd);
-					printf("\n\n-----------------------------------------------------------------------------------------------------------------------------------------------------\n");
-				}
+				//if(comparaNome(referenciaC->Nome, referenciaV->Nome)){
+					i++;
+					if(i==j){
+						//printf("\t\tNome do papel da venda....:%s\t", referenciaV->Nome);
+						printf("\tPreco do papel da venda....:%.2f      Quantidade do papel da venda....:%d", referenciaV->Preco,referenciaV->Qtd);
+						printf("\n\n-----------------------------------------------------------------------------------------------------------------------------------------------------\n");
+					}
+				//}//else{
+					//i++;
+				//}
 			}
-			//printf("\n\nj: %d",j);
 			i=0;
 		}
 		//printf("\n=====================================      VENDA     ==========================================\n");
 		printf("\n**************************************************************************************************************************************************************\n");
 	}
-	
+*/
+
+void consultar_acoes(PapelC* inicioC,PapelV* inicioV){
+	PapelC *referenciaC;
+	PapelV *referenciaV;
+	if(!inicioC && !inicioV){
+		printf("\nNao existem acoes disponiveis no momento\n");
+	}else{
+		printf("\n=====================================     COMPRA     ==========================================\n");
+		for(referenciaC= inicioC;referenciaC!= NULL; referenciaC=referenciaC->prox){
+			printf("\nNome do papel da compra....:%s", referenciaC->Nome);
+			printf("\nPreco do papel da compra....:%.2f      Quantidade do papel da compra....:%d", referenciaC->Preco,referenciaC->Qtd);
+			printf("\n-----------------------------------------------------------------------------------------------------------------------------------------------------\n");		
+		}
+		printf("\n=====================================      VENDA     ==========================================\n");
+		for(referenciaV= inicioV;referenciaV!=NULL; referenciaV=referenciaV->prox){
+			printf("\nNome do papel da venda....:%s\t", referenciaV->Nome);
+			printf("\nPreco do papel da venda....:%.2f      Quantidade do papel da venda....:%d", referenciaV->Preco,referenciaV->Qtd);
+			printf("\n-----------------------------------------------------------------------------------------------------------------------------------------------------\n");
+		}
+	}
 }
 
 /*void *Excluir(int id, Papel *ptr){
@@ -134,12 +163,73 @@ void consultar_acoes(PapelC* inicioC,PapelV* inicioV){
   //return NULL;
 }*/
 
-/*int Comprar(Papel* p, char nome[]){
-	int flag=0,flag2=0,qtd=0,i;
+int Comprar(PapelC* inicioC,PapelV* inicioV, char nome[]){
+	int flag=0,flag2=0,qtd=0,i=0,j=0,idC=0,idV=0,retorno=1;
 	float media=0,preco=0,precoAntes=0;
-	Papel *referencia;
+	PapelC *referenciaC;
+	PapelV *referenciaV;
+	if(!inicioC || !inicioV){
+		printf("\nNao existem acoes disponiveis no momento\n");
+	}else{
+		printf("\n**************************************************************************************************************************************************************\n");
+		for(referenciaC= inicioC;referenciaC!= NULL; referenciaC=referenciaC->prox){
+			idC = referenciaC->id;
+			if(!comparaNome(referenciaC->Nome,nome)){
+				idC = 0;
+				retorno=0;
+			}
+			if(idC && retorno){
+				j++;
+				printf("\nNome do papel da compra....:%s", referenciaC->Nome);
+				printf("\nPreco do papel da compra....:%.2f      Quantidade do papel da compra....:%d\t", referenciaC->Preco,referenciaC->Qtd);
+				printf("|");
+				for(referenciaV= inicioV;referenciaV!=NULL; referenciaV=referenciaV->prox){
+					idV = referenciaV->id;
+					if(!comparaNome(referenciaV->Nome,nome)){
+						idV = 0;
+						retorno = 0;
+					}
+					if(idV && retorno){
+						if(comparaNome(referenciaC->Nome, referenciaV->Nome)){	
+							i++;
+							if(i==j){
+								printf("\tPreco do papel da venda....:%.2f      Quantidade do papel da venda....:%d", referenciaV->Preco,referenciaV->Qtd);
+								printf("\n\n-----------------------------------------------------------------------------------------------------------------------------------------------------\n");
+							}	
+						}
+					}
+					
+				}
+				flag2=1;
+				i=0;
+			}
+			
+		}
+		printf("\n**************************************************************************************************************************************************************\n");
+	}
+	/*
+			j++; 
+			printf("\nNome do papel da compra....:%s", referenciaC->Nome);
+			printf("\nPreco do papel da compra....:%.2f      Quantidade do papel da compra....:%d\t", referenciaC->Preco,referenciaC->Qtd);
+			printf("|");
+			for(referenciaV= inicioV;referenciaV!=NULL; referenciaV=referenciaV->prox){
+				//if(comparaNome(referenciaC->Nome, referenciaV->Nome)){
+					i++;
+					if(i==j){
+						//printf("\t\tNome do papel da venda....:%s\t", referenciaV->Nome);
+						printf("\tPreco do papel da venda....:%.2f      Quantidade do papel da venda....:%d", referenciaV->Preco,referenciaV->Qtd);
+						printf("\n\n-----------------------------------------------------------------------------------------------------------------------------------------------------\n");
+					}
+				//}//else{
+					//i++;
+				//}
+			}
+			i=0;
+			*/
+
+
 	//o valor da transação seria a *média entre os dois valores*
-	for(referencia= p;referencia!= NULL; referencia=referencia->prox){
+	/*for(referencia= p;referencia!= NULL; referencia=referencia->prox){
 		if(strcmp(referencia->Nome, nome)==0){
 			precoAntes = referencia->Preco;
 			printf("\nPreco da venda....:%.2f                        Quantidade da venda....:%d\n", referencia->Preco,referencia->Qtd);
@@ -176,13 +266,14 @@ void consultar_acoes(PapelC* inicioC,PapelV* inicioV){
 			break;
 		}
 		printf("\n---------------------------------------------------------------------------------\n");
-	}
+	}*/
 	if(flag && !flag2){
 		media=-1;
-		return 0;
+		retorno = 0;
+		return retorno;
 	}
-	return 1;
-}*/
+	return retorno;
+}
 
 /*
 Paciente *retiraInicio(Paciente *LISTA)
@@ -237,7 +328,6 @@ int main() {
 	listaCompra = NULL;
 	listaVenda = NULL;
 	while (opcao!=0){
-		opcaoDois=-0;
 		printf("\ndigite a opcao:\n1 - Cadastrar Papel\n2 - consultar acoes\n3 - Comprar e vender\n4 - Sair\n");
 		scanf("%d",&opcao);
 		printf("\n---------------------------------------------------------------------------------\n");
@@ -248,43 +338,60 @@ int main() {
 				printf("\ndigite a opcao:\n1 - Cadastrar Compra\n2 - Cadastrar Venda\n3 - sair\n");
 				scanf("%d",&opcaoDois);
 				if(opcaoDois==1){
-					//printf("\ndigite o nome do papel para compra......:\n");
-					//getchar();
-					//fgets(nome, 21, stdin);
+					printf("\ndigite o nome do papel para compra......:\n");
+					getchar();
+					fgets(nome, 21, stdin);
 					printf("\ndigite o preco do papel para compra.....: \n");
 					scanf("%f",&Preco);
 					printf("\ndigite a quantidade do papel para compra.....: \n");
 					scanf("%d",&qtd);
-					listaCompra = CadastrarCompra(listaCompra, Preco, qtd, "nome");
+					listaCompra = CadastrarCompra(listaCompra, Preco, qtd, nome);
 				}else if(opcaoDois==2){
-					//printf("\ndigite o nome do papel para venda......:\n");
-					//getchar();
-					//fgets(nome, 21, stdin);
+					printf("\ndigite o nome do papel para venda......:\n");
+					getchar();
+					fgets(nome, 21, stdin);
 					printf("\ndigite o preco do papel para venda.....: \n");
 					scanf("%f",&Preco);
 					printf("\ndigite a quantidade do papel para venda.....: \n");
 					scanf("%d",&qtd);
-					listaVenda = CadastrarVenda(listaVenda, Preco, qtd, "nome");
+					listaVenda = CadastrarVenda(listaVenda, Preco, qtd, nome);
 				}else if(opcaoDois==3){
 					opcaoDois=0;
 				}else{
 					printf("\nopcao invalida\n");
 				}
 			}
-			
 			break;
 		case 2:
 			consultar_acoes(listaCompra,listaVenda);
 		break;
 		case 3:
-			/*printf("\ndigite o nome da acao que deseja comprar.........: ");
-			getchar();
-			fgets(nome,21,stdin);
-			//retorn = Comprar(lista, nome);
-			if(!retorn){
-				printf("\nNao existe o papel que foi pesquisado\n");
-			}
-			*/
+			opcaoDois=1;
+			while(opcaoDois){
+				printf("\ndigite a opcao:\n1 - comprar\n2 - vender\n3 - sair\n");
+				scanf("%d",&opcaoDois);
+				if(opcaoDois==1){
+					printf("\ndigite o nome da acao que deseja comprar: ");
+					getchar();
+					fgets(nome,21,stdin);
+					retorn = Comprar(listaCompra,listaVenda, nome);
+					if(!retorn){
+						printf("\nNao existe o papel que foi pesquisado\n");
+					}
+				}else if(opcaoDois==2){
+					printf("\ndigite o nome da acao que vender: ");
+					getchar();
+					fgets(nome,21,stdin);
+					retorn = Comprar(listaCompra,listaVenda, nome);
+					if(!retorn){
+						printf("\nNao existe o papel que foi pesquisado\n");
+					}
+				}else if(opcaoDois==3){
+					opcaoDois=0;
+				}else{
+					printf("\nopcao invalida\n");
+				}
+			}		
 		break;
 		case 4:
 			printf("saindo..\n");
